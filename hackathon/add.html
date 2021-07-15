@@ -6,10 +6,11 @@
         <title>Sign Up</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="add data.js"></script>
+        <link href="styles/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Sign Up</h1>
-        <form action="index.php" method="POST">
+        <form action="index.php" method="POST" id="formSignUp">
+            <h1>Sign Up</h1>
             <table>
                 <tbody>
                     <tr>
@@ -36,9 +37,11 @@
                         <td><label id="5">Confirm Password:</label></td>
                         <td><input type="password" id="conf_password" name="conf_password"></td>
                     </tr>
+                    <tr>
+                        <td><button onclick="new_usr()" type="button">Sign Up</button></td>
+                    </tr>
                 </tbody>
             </table>
         </form>
-        <button onclick="new_usr()">Sign Up</button>
     </body>
 </html>
