@@ -1,8 +1,9 @@
 <?php 
 $dbc = mysqli_connect('localhost', 'root', 'password', 'hackathon_testing');
-session_start();
 
-	include("verify_user_function.php");
+	if (isset($_SESSION['user_id'])) {
+		header("Location: player_display.php");
+	}
 	$badInput = false;
 
 
@@ -75,8 +76,8 @@ session_start();
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav">
-				<a class="nav-item nav-link" id="home" href="/hackathon/home.html">Home</a>
-                <a class="nav-item nav-link" id="signup" href="/hackathon/signup.html">Sign Up</a>
+				<a class="nav-item nav-link" id="home" href="home.html">Home</a>
+                <a class="nav-item nav-link" id="signup" href="signup.html">Sign Up</a>
             </div>
         </div>
     </nav>

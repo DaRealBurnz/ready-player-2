@@ -14,7 +14,7 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-    <title>Home</title>
+    <title>Profile</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Navigation Bar Colour-->
@@ -28,8 +28,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" id="signup" href="../hackathon/match.html">Find a match</a>
-                <a class="nav-item nav-link" id="signup" href="../hackathon/logout.php">Logout</a>
+                <a class="nav-item nav-link" id="signup" href="match.html">Find a match</a>
+                <a class="nav-item nav-link" id="signup" href="logout.php">Logout</a>
             </div>
         </div>
     </nav>
@@ -68,12 +68,13 @@
  
 <body>
 <?php
-$dbc = mysqli_connect( 'localhost', 'root', 'root', 'user' );//need to put database name here
+$dbc = mysqli_connect( 'localhost', 'root', 'password', 'hackathon_testing' );//need to put database name here
 ?>
   <main>
 <?php
 if (!$dbc) echo "<p>Database not found</p>";
-$specifyData = 'SELECT id, first_name, last_name, email,  discord, games, interests, dislikes, comp, skill, path FROM DB';//change DB to your database
+include("verify_user_function.php");
+$specifyData = "SELECT id, first_name, last_name, email, discord, games, interests, dislikes, comp, skill FROM users WHERE id=".$_SESSION['user_id'];//change DB to your database
 //I took out password cuz we dont want to show that 
 $databaseResults = mysqli_query($dbc,$specifyData);
 /////////////////////////////////////In TABLE FORMAT//////////////////////////////////////////////////////////////
@@ -114,35 +115,51 @@ echo '</table>';
 
 <h1>Player Information</h1>
 <?php
-while( $row = mysqli_fetch_assoc( $databaseResults ) ) {
 //NB. chage all the 'ID' inside the $row to match the ID of each heading
-  echo '<h2> ID: </h2>';
-  echo '<p>'.$row['id'].'</p>'; <br>
+  $usrInfo = mysqli_fetch_assoc($databaseResults);
   echo '<h2> First Name: </h2>';
-  echo '<p>'.$row['first_name'].'</p>'; <br>
-  echo '<h2> Last Name </h2>';
-  echo '<p>'.$row['last_name'].'</p>'; <br>
-  echo '<h2> Email </h2>';
-  echo '<p>'.$row['email'].'</p>'; <br>
-  echo '<h2> Password: </h2>';
-  echo '<p>'.$row['password'].'</p>'; <br>
-  echo '<h2> Discord </h2>';
-  echo '<p>'.$row['discord'].'</p>'; <br>
+  echo '<p>'.$usrInfo['first_name'].'</p><br>';
+  echo '<h2> Last Name: </h2>';
+  echo '<p>'.$usrInfo['last_name'].'</p><br>';
+  echo '<h2> Email: </h2>';
+  echo '<p>'.$usrInfo['email'].'</p><br>';
+  echo '<h2> Discord: </h2>';
+  echo '<p>'.$usrInfo['discord'].'</p><br>';
   echo '<h2> Games: </h2>';
-  echo '<p>'.$row['games'].'</p>'; <br>
+  echo '<p>'.$usrInfo['games'].'</p><br>';
   echo '<h2> Interests: </h2>';
-  echo '<p>'.$row['interests'].'</p>'; <br>
+  echo '<p>'.$usrInfo['interests'].'</p><br>';
   echo '<h2> Dislikes: </h2>';
-  echo '<p>'.$row['dislikes'].'</p>'; <br>
+  echo '<p>'.$usrInfo['dislikes'].'</p><br>';
   echo '<h2> Casual or Competitive: </h2>';
-  echo '<p>'.$row['comp'].'</p>'; <br>
+  if ($usrInfo['comp'] == 1) {
+    echo '<p>Competitive</p><br>';
+  } elseif ($usrInfo['comp'] == 0) {
+    echo '<p>Casual</p><br>';
+  } else {
+    echo '<p>Not Set</p><br>';
+  }
   echo '<h2> Skill level: </h2>';
-  echo '<p>'.$row['skill'].'</p>'; <br>
-}
+  switch ($usrInfo['skill']) {
+    case 0:
+      echo '<p>Beginner/Learning</p><br>';
+      break;
+    case 1:
+      echo '<p>Decent</p><br>';
+      break;
+    case 2:
+      echo '<p>Pretty good</p><br>';
+      break;
+    case 3:
+      echo '<p>Cracked</p><br>';
+      break;
+    default:
+      echo '<p>Not Set</p><br>';
+  }
 
 
 ?>
- <a href="nextpage.php"> <!-- Change your button location here-->
+ <a href="match.html"> <!-- Change your button location here-->
  <button>Find a match</button>
 </a>
   <footer>Site Footer</footer>
