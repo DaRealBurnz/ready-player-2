@@ -30,7 +30,7 @@ session_start();
 					{
 
 						$_SESSION['user_id'] = $user_data['id'];
-						header("Location: index.php");
+						header("Location: player_display.php");
 						die;
 					}
 				}
