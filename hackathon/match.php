@@ -1,38 +1,35 @@
 <?php
+$dbc = mysqli_connect('localhost', 'root', 'password', 'hackathon_testing');
+include('verify_user_function.php');
+if (!$dbc) exit('Could not connect');
 
-function gameMatches($lst,$game){
-    $game_lst = [];
-    $matches = [];
-    for ($x = 0; x < count($lst); $x++) {
-        array_push($game_lst, $lst[$x][3]);
-    }
-    for ($j = 0; $j < count($lst); $j++){
-        for ($k = 0; $k < count($lst[$j]); $k++){
-            if ($game_lst[$j][$k] == $game){
-                array_push($matches,$j);
-            }
+$id = $_SESSION['user_id'];
+$game = $_POST['game'];
+$comp = $_POST['comp'];
 
-        }
-    }
-return $matches;
+$matches = array();
+if (!$dbc) exit('Could not connect');
+if ($comp == -1) {
+    $stmt = mysqli_prepare($dbc, "SELECT * FROM users WHERE games LIKE '%$game%' AND NOT id=$id");
+} else {
+    $stmt = mysqli_prepare($dbc, "SELECT * FROM users WHERE games LIKE '%$game%' AND NOT id=$id AND comp=$comp");
 }
-
-function getGamePrefs() {
-    $usrs = array();
-    $dbc = mysqli_connect('localhost', 'root', 'password', 'hackathon_testing');
-    if (!$dbc) exit('Could not connect');
-    $stmt = mysqli_prepare($dbc, "SELECT id, games FROM users");
-    mysqli_stmt_execute($stmt);
-    $results = mysqli_stmt_get_result($stmt);
-    while ($row = mysqli_fetch_assoc($results)) {
-        array_push($usrs, array($row['id'],explode(",", $row['games'])));
-    }
-    return $usrs;
+mysqli_stmt_execute($stmt);
+$results = mysqli_stmt_get_result($stmt);
+echo '<tr>
+    <td>Name</td>
+    <td>Games</td>
+    <td>Interests</td>
+    <td>Dislikes</td>
+    <td>Discord Tag</td>
+    </tr>';
+while ($row = mysqli_fetch_assoc($results)) {
+    echo '<tr>
+    <td>'.$row['first_name'].'</td>
+    <td>'.$row['games'].'</td>
+    <td>'.$row['interests'].'</td>
+    <td>'.$row['dislikes'].'</td>
+    <td>'.$row['discord'].'</td>
+    </tr>';
 }
-
-function runPy() {
-    $pyOutput = shell_exec('py match.py'.getGamePrefs());
-    return $pyOutput
-}
-
 ?>

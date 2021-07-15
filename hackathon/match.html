@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Find a Match</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="match.js"></script>
+        <link href="styles/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <form action="javascript:void(0);" class="form">
+            <h1>Find a Match</h1>
+            <table class="formTable">
+                <tbody>
+                    <tr>
+                        <td><label for="games">Search for people who also play: </label></td>
+                        <td>
+                            <select name="games" id="games">
+                                <option value="*">Select a game...</option>
+                                <option value="Overwatch">Overwatch</option>
+                                <option value="Stellaris">Stellaris</option>
+                                <option value="Empire at War">Empire at War</option>
+                                <option value="Apex Legends">Apex Legends</option>
+                                <option value="Valorant">Valorant</option>
+                                <option value="Rainbow 6 Siege">Rainbow 6 Siege</option>
+                                <option value="Star Wars Battlefront II">Star Wars Battlefront II</option>
+                                <option value="Rainbow 6 Siege">Rainbow 6 Siege</option>
+                                <option value="Rainbow 6 Siege">Team Fortress 2</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="comp">Competitive Players Only: </label></td>
+                        <td><input type="radio" name="compOrCasual" id="comp" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="casual">Casual Players Only: </label></td>
+                        <td><input type="radio" name="compOrCasual" id="casual" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="none">Any Players: </label></td>
+                        <td><input type="radio" name="compOrCasual" id="none" value="-1" checked></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="tblMatches"></table>
+        </form>
+    </body>
+</html>
