@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Sign Up</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="add data.js"></script>
+        <link href="styles/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <form action="index.php" method="POST" class="form">
+            <h1>Sign Up</h1>
+            <table class="formTable">
+                <tbody>
+                    <tr>
+                        <td><label id="0">First Name:</label></td>
+                        <td><input type="text" id="fname" name="fname" class="textInput"></td>
+                    </tr>
+                    <tr>
+                        <td><label id="1">Last Name:</label></td>
+                        <td><input type="text" id="lname" name="lname" class="textInput"></td>
+                    </tr>
+                    <tr>
+                        <td><label id="2">Email:</label></td>
+                        <td><input type="email" id="email" name="email" class="textInput"></td>
+                    </tr>
+                    <tr>
+                        <td><label id="3">Discord Tag:</label></td>
+                        <td><input type="text" id="discord" name="discord" class="textInput"></td>
+                    </tr>
+                    <tr>
+                        <td><label id="4">Password:</label></td>
+                        <td><input type="password" id="password" name="password" class="textInput"></td>
+                    </tr>
+                    <tr>
+                        <td><label id="5">Confirm Password:</label></td>
+                        <td><input type="password" id="conf_password" name="conf_password" class="textInput"></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="new_usr()" type="button" class="btn_submit">Sign Up</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>

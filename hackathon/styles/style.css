@@ -1,4 +1,4 @@
-#formSignUp {
+.form {
     display:block;
     margin:auto;
     width:40%;
@@ -6,7 +6,7 @@
     background-color: white;
     height:auto;
 }
-#formSignUp table {
+.formTable {
     margin:auto;
 }
 h1 {
@@ -17,4 +17,20 @@ body {
     background-image: url("../images/2 player.jpg");
     background-size: cover;
     background-attachment: fixed;
+}
+.textInput {
+
+    height: 20px;
+    border-radius: 5px;
+    padding: 4px;
+    border: solid thin #aaa;
+}
+
+.btnSubmit{
+
+    padding: 10px;
+    width: 100px;
+    color: white;
+    background-color: lightblue;
+    border: none;
 }
