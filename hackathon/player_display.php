@@ -142,13 +142,13 @@ echo '</table>';
   echo '<h2> Skill level: </h2>';
   switch ($usrInfo['skill']) {
     case 0:
-      echo '<p>Beginner/Learning</p><br>';
+      echo '<p>Beginner</p><br>';
       break;
     case 1:
-      echo '<p>Decent</p><br>';
+      echo '<p>Novice</p><br>';
       break;
     case 2:
-      echo '<p>Pretty good</p><br>';
+      echo '<p>Intermediate</p><br>';
       break;
     case 3:
       echo '<p>Cracked</p><br>';
