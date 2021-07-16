@@ -1,0 +1,85 @@
+
+
+<form>
+	<fieldset>
+		<legend>Enter Games You Play</legend>
+		<input id = "input" type="text" list="games" />
+		<datalist id="games"></datalist>
+	</fieldset>
+</form>
+<br>
+
+
+<button onclick="sel_opt()">Select Game</button>
+<button onclick="rem_opt()">Remove Game</button>
+
+<br>
+<br>
+
+<body>
+Selected Games
+<p id="gamelist"></p>
+</body>
+	
+<br>
+<br>
+	
+<button onclick="cont()">Continue</button>
+
+
+
+<script>
+
+// The main point is all that rubbish within this tag, basically just copy and paste everything below if the rest of the website is already built
+
+let list_games = []
+
+var games = ["Overwatch","Tom Clancy's Rainbow Six Siege","Apex Legends","Valorant","Battlefield 1"];
+
+games.sort();
+
+//Expandable list, can read from a text file if it gets too long
+
+var list = document.getElementById('games');
+
+games.forEach(function(item){
+   var option = document.createElement('option');
+   option.value = item;
+   list.appendChild(option);
+});
+
+function sel_opt() {
+	var sel_game = document.getElementById("input").value;
+	if (list_games.includes(sel_game)) {
+	
+	} else if(games.includes(sel_game)){
+		list_games.push(sel_game)
+		document.getElementById("input").value = ''
+	}
+	document.getElementById("gamelist").innerHTML = list_games
+}
+
+function rem_opt() {
+	var sel_game = document.getElementById("input").value;
+	if (list_games.includes(sel_game)) {
+		list_games.splice(list_games.indexOf(sel_game),1)
+		document.getElementById("input").value = ''
+	}
+	document.getElementById("gamelist").innerHTML = list_games
+}
+
+function cont() {
+
+	//Here's the bit where you extract the data. The games selected can be found under the array list_games. Cheers Ethan.
+	//In case you want it in a text file, uncomment the code below
+	//set fso = CreateObject("Scripting.FileSystemObject"); 
+    //set s   = fso.CreateTextFile("filename.txt", True);
+	//s.writeline(list_games);
+	//s.Close();
+	
+	// Where ever it's meant to lead after all this info is collected
+	
+	//window.location.href = ""
+}
+
+</script>

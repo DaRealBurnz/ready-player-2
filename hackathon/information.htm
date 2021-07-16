@@ -1,0 +1,118 @@
+<form>
+	<fieldset>
+		<legend>Information</legend>
+		
+		<br>
+		
+		<legend>First Name</legend>
+		<input id = "fname" type="text"/>
+		
+		<legend>Last Name</legend>
+		<input id = "lname" type="text"/>
+		
+		<legend>Discord ID</legend>
+		<input id = "disid" type="text"/>
+		
+		<legend>Interests</legend>
+		<input id = "interests" type="text"/>
+		
+		<button type="button" onClick="return addint()">Click to Add</button>
+		<button type="button" onClick="remint()">Remove Last Entry</button>
+		
+		<legend>Dislikes</legend>
+		<input id = "dislikes" type="text"/>
+		
+		<button type="button" onClick="adddis()">Click to Add</button>
+		<button type="button" onClick="remdis()">Remove Last Entry</button>
+		
+		<br>
+		<br>
+		
+		<label for="level">Competitive or Casual Play</label>
+		
+		<br>
+		
+		<select name="level_select" id=level>
+			<option value="comp">Competitive</option>
+			<option value="cas">Casual</option>
+		</select>
+		
+		<br>
+		
+		<label for="skill">Skill Level</label>
+		<br>
+		
+		<select name="skill_select" id=skill>
+			<option value="beg">Beginner</option>
+			<option value="nov">Novice</option>
+			<option value="inter">Intermediate</option>
+			<option value="crack">Cracked</option>
+		</select>
+		
+	</fieldset>
+</form>
+<br>
+
+<body>
+Interests
+<p id="intslist"></p>
+</body>
+<body>
+Dislikes
+<p id="dislist"></p>
+</body>
+
+<button onclick="cont()">Continue</button>
+
+<script>
+// The main point is all that rubbish within this tag, basically just copy and paste everything below if the rest of the website is already built
+
+let ints = []
+let dis = []
+
+function addint() {
+	var inpint = document.getElementById("interests").value;
+	if (Boolean(inpint)) {
+		ints.push(inpint);
+	}
+	document.getElementById("interests").value = '';
+	document.getElementById("intslist").innerHTML = ints;
+	}
+	
+function remint(){
+	ints.pop();
+	document.getElementById("intslist").innerHTML = ints;
+}
+
+function adddis() {
+
+	var inpdis = document.getElementById("dislikes").value;
+	if (Boolean(inpdis)) {
+		ints.push(inpdis);
+	}
+	dis.push(inpdis);
+	document.getElementById("dislikes").value = '';
+	document.getElementById("dislist").innerHTML = dis;
+	}
+	
+function remdis(){
+	dis.pop();
+	document.getElementById("dislist").innerHTML = dis;
+}
+
+function cont() {
+
+	//Here's the bit where you extract the data. The data can be found under the variable names:
+
+	var fname = document.getElementById("fname").value;
+	var lname = document.getElementById("lname").value;
+	var discordid = document.getElementById("disid").value;
+	var interests = document.getElementById("interests").value;
+	var dislikes = document.getElementById("dislikes").value;
+	var level = document.getElementById("level").value;
+	var skill = document.getElementById("skill").value;
+	
+	self.location="game_select.htm";
+}
+
+</script>
